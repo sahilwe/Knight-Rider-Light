@@ -1,0 +1,19 @@
+// C++ code
+//MASTER
+#include<Wire.h>
+int potval = 0;
+void setup()
+{
+  Wire.begin();
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  delay(100);
+  potval = analogRead(A2);
+  Serial.println(potval);
+  Wire.beginTransmission(9);
+  Wire.write(map(potval,0,4092,1,1000));
+  Wire.endTransmission();
+}
